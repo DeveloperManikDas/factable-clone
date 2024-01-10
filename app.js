@@ -153,6 +153,7 @@ function buttonClickListener(event) {
 }
 
 function showNextQuestion() {
+  startQuiz.removeEventListener("click", showNextQuestion)
   removeSelectedClass();
   hiddenElements.forEach((element) => {
     element.classList.remove("hide");
@@ -189,3 +190,4 @@ function showNextQuestion() {
 }
 
 nextButton.addEventListener("click", showNextQuestion);
+startQuiz.addEventListener("click", showNextQuestion)
