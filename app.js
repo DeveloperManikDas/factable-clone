@@ -75,7 +75,7 @@ const questions = [
     imgSrc:
       "https://www.factable.com/wp-content/uploads/2022/06/in-this-photo-illustration-a-tiktok-logo-is-displayed-on.-42940.jpeg?quiz=true&b=0&c=0&width=756&height=331&top=146&left=0&zoom=0.63",
     ImgCredit:
-      "Illustration by Sheldon Cooper/SOPA Images/LightRocket via Getty Images",
+      "Illustration by Sheldon",
     options: ["FACEBOOK", "TIKTOK", "SNAPCHAT"],
     dialogue:
       "While people old and young use social media, there tends to be a very real separation when it comes to Facebook and TikTok — old souls will venture towards Facebook.",
@@ -101,6 +101,16 @@ const questions = [
       "By choosing one of these three trees, a person can say a lot about themselves. A palm tree usually means going to exotic and warm places, while evergreens usually depict the holidays, and willows are just beautiful and wise-looking.",
   },
 ];
+
+const endPage = {
+  id: 11,
+  question: "Congrats, you finished! Here are your results:",
+  imgSrc:
+    "https://images.swarm.hivemedia.com/wp-content/uploads/2022/06/jace-afsoon-PvqGd3PH6ZE-unsplash-34055.jpg?quiz=true&b=0&c=0&width=756&height=331&top=81&left=0&zoom=0.63",
+  ImgCredit: "Jace Afsoon/Unsplash",
+  dialogue:
+    "<h3>OLD SOUL</h3> You have an old soul and are wise beyond your years! You love vintage items, old movies, and being able to listen to music on a record player, not from a Bluetooth speaker.",
+};
 
 let level = 0;
 let progressbars = document.querySelectorAll(".progress-bar");
@@ -153,13 +163,15 @@ function buttonClickListener(event) {
 }
 
 function showNextQuestion() {
-  startQuiz.removeEventListener("click", showNextQuestion)
+  console.log(level);
+  startQuiz.removeEventListener("click", showNextQuestion);
   removeSelectedClass();
   hiddenElements.forEach((element) => {
     element.classList.remove("hide");
     optionInfo.classList.add("hide");
     nextButton.classList.add("hide");
   });
+  optionDiv.style.display = "flex";
   startQuiz.innerHTML = "Back To Top";
   startQuiz.addEventListener("click", function () {
     window.scrollTo({
@@ -185,9 +197,25 @@ function showNextQuestion() {
       button.addEventListener("click", buttonClickListener);
     });
     level++;
+    console.log(level);
   } else {
+    question.textContent = endPage.question;
+    mainImage.src = endPage.imgSrc;
+    imgCredit.textContent = "Credit: " + endPage.ImgCredit;
+    optionDiv.style.display = "none";
+    optionInfo.classList.remove("hide");
+    nextButton.classList.remove("hide");
+    nextButton.innerHTML = "Restart Quiz";
+    optionInfo.innerHTML = endPage.dialogue;
+    let width = (100 / questions.length) * level + "%";
+    progress.style.width = width;
+    progressPercent.innerHTML = width;
+    optionInfo.style.borderColor = "Green"
+    optionInfo.style.backgroundColor = "#CFF5BF"
+    level = 0;
+    console.log(level);
   }
 }
 
 nextButton.addEventListener("click", showNextQuestion);
-startQuiz.addEventListener("click", showNextQuestion)
+startQuiz.addEventListener("click", showNextQuestion);
