@@ -74,8 +74,7 @@ const questions = [
     question: "What is your favorite social media app?",
     imgSrc:
       "https://www.factable.com/wp-content/uploads/2022/06/in-this-photo-illustration-a-tiktok-logo-is-displayed-on.-42940.jpeg?quiz=true&b=0&c=0&width=756&height=331&top=146&left=0&zoom=0.63",
-    ImgCredit:
-      "Illustration by Sheldon",
+    ImgCredit: "Illustration by Sheldon",
     options: ["FACEBOOK", "TIKTOK", "SNAPCHAT"],
     dialogue:
       "While people old and young use social media, there tends to be a very real separation when it comes to Facebook and TikTok — old souls will venture towards Facebook.",
@@ -163,6 +162,7 @@ function buttonClickListener(event) {
 }
 
 function showNextQuestion() {
+  optionInfo.classList.remove("optionInfoLast");
   console.log(level);
   startQuiz.removeEventListener("click", showNextQuestion);
   removeSelectedClass();
@@ -210,8 +210,7 @@ function showNextQuestion() {
     let width = (100 / questions.length) * level + "%";
     progress.style.width = width;
     progressPercent.innerHTML = width;
-    optionInfo.style.borderColor = "Green"
-    optionInfo.style.backgroundColor = "#CFF5BF"
+    optionInfo.classList.add("optionInfoLast");
     level = 0;
     console.log(level);
   }

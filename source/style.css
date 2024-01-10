@@ -130,6 +130,11 @@ span {
     margin: 20px 0;
 }
 
+.optionInfoLast{
+    border-color: green;
+    background-color: #CFF5BF;
+}
+
 .info-paragraph {
     margin: 20px 0 20px 0;
 }
