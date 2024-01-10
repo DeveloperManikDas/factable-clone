@@ -120,12 +120,15 @@ let buttons = document.querySelectorAll(".option-button");
 let menuIcon = document.querySelector(".menu-icon img");
 let x = document.querySelector(".cross");
 let sb = document.querySelector(".slide-bar");
+
 menuIcon.addEventListener("click", function () {
   sb.classList.remove("hide-slide");
+  document.body.classList.add("lock-scroll");
 });
 
 x.addEventListener("click", function () {
   sb.classList.add("hide-slide");
+  document.body.classList.remove("lock-scroll");
 });
 
 function removeAllListeners() {
@@ -156,6 +159,13 @@ function showNextQuestion() {
     optionInfo.classList.add("hide");
     nextButton.classList.add("hide");
   });
+  startQuiz.innerHTML = "Back To Top";
+  startQuiz.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
   if (level < questions.length) {
     const currentQuestion = questions[level];
     question.textContent = currentQuestion.question;
@@ -173,9 +183,7 @@ function showNextQuestion() {
     buttons.forEach(function (button) {
       button.addEventListener("click", buttonClickListener);
     });
-    console.log(level);
     level++;
-    console.log(level);
   } else {
   }
 }

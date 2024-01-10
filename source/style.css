@@ -189,6 +189,10 @@ span {
     transition: all ease-in .1s;
 }
 
+
+.lock-scroll{
+    overflow: hidden;
+}
 .cross {
     position: absolute;
     color: #fff;
